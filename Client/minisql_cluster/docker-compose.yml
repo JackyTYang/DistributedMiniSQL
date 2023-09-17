@@ -1,0 +1,42 @@
+version: '3.9'
+
+services:
+  minisql1:
+    build:
+      context: .
+    image: minisql:1
+    command: python -u ./src/main.py minisql1
+    networks:
+      default:
+        ipv4_address: 172.16.238.5
+#        ipv4_address: 127.0.0.2
+
+  minisql2:
+    build:
+      context: .
+      args:
+        serverName: minisql2
+    image: minisql:2
+    command: python -u ./src/main.py minisql2
+    networks:
+      default:
+        ipv4_address: 172.16.238.6
+#        ipv4_address: 127.0.0.3
+
+  minisql3:
+    build:
+      context: .
+      args:
+        serverName: minisql3
+    image: minisql:3
+    command: python -u ./src/main.py minisql3
+    networks:
+      default:
+        ipv4_address: 172.16.238.7
+#        ipv4_address: 127.0.0.4
+
+networks:
+  default:
+    external:
+      name: zookeeper_cluster_zookeeper_cluster
+

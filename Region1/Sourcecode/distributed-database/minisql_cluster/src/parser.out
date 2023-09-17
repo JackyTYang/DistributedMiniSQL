@@ -1,0 +1,1167 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> sql_statement
+Rule 1     sql_statement -> create_statement
+Rule 2     sql_statement -> insert_statement
+Rule 3     sql_statement -> select_statement
+Rule 4     sql_statement -> delete_statement
+Rule 5     sql_statement -> drop_statement
+Rule 6     sql_statement -> quit_statement
+Rule 7     sql_statement -> execute_statement
+Rule 8     create_statement -> create_table
+Rule 9     create_statement -> create_index
+Rule 10    insert_statement -> INSERT INTO ID VALUES LPAREN value_list RPAREN SEMICOLON
+Rule 11    select_statement -> select_all
+Rule 12    select_statement -> conditional_select
+Rule 13    delete_statement -> delete_all
+Rule 14    delete_statement -> conditional_delete
+Rule 15    drop_statement -> drop_table
+Rule 16    drop_statement -> drop_index
+Rule 17    quit_statement -> QUIT SEMICOLON
+Rule 18    create_table -> CREATE TABLE ID LPAREN column_list RPAREN SEMICOLON
+Rule 19    create_table -> CREATE TABLE ID LPAREN column_list COMMA primary_clause RPAREN SEMICOLON
+Rule 20    create_index -> CREATE INDEX ID ON ID LPAREN ID RPAREN SEMICOLON
+Rule 21    column_list -> column
+Rule 22    column_list -> column_list COMMA column
+Rule 23    column -> ID column_type
+Rule 24    column -> ID column_type UNIQUE
+Rule 25    column_type -> INT
+Rule 26    column_type -> FLOAT
+Rule 27    column_type -> CHAR LPAREN ICONST RPAREN
+Rule 28    primary_clause -> PRIMARY KEY LPAREN ID RPAREN
+Rule 29    value_list -> value
+Rule 30    value_list -> value_list COMMA value
+Rule 31    value -> ICONST
+Rule 32    value -> FCONST
+Rule 33    value -> SCONST
+Rule 34    select_all -> SELECT STAR FROM ID SEMICOLON
+Rule 35    conditional_select -> SELECT STAR FROM ID WHERE conditions SEMICOLON
+Rule 36    conditions -> condition
+Rule 37    conditions -> conditions AND condition
+Rule 38    conditions -> conditions OR condition
+Rule 39    condition -> ID GT value
+Rule 40    condition -> ID LT value
+Rule 41    condition -> ID EQ value
+Rule 42    condition -> ID GE value
+Rule 43    condition -> ID LE value
+Rule 44    condition -> ID NE value
+Rule 45    delete_all -> DELETE FROM ID SEMICOLON
+Rule 46    conditional_delete -> DELETE FROM ID WHERE conditions SEMICOLON
+Rule 47    drop_table -> DROP TABLE ID SEMICOLON
+Rule 48    drop_index -> DROP INDEX ID SEMICOLON
+Rule 49    execute_statement -> EXECUTE ID SEMICOLON
+Rule 50    execute_statement -> EXECUTE ID DOT ID SEMICOLON
+
+Terminals, with rules where they appear
+
+AND                  : 37
+CHAR                 : 27
+COMMA                : 19 22 30
+CREATE               : 18 19 20
+DELETE               : 45 46
+DOT                  : 50
+DROP                 : 47 48
+EQ                   : 41
+EXECUTE              : 49 50
+FCONST               : 32
+FLOAT                : 26
+FROM                 : 34 35 45 46
+GE                   : 42
+GT                   : 39
+ICONST               : 27 31
+ID                   : 10 18 19 20 20 20 23 24 28 34 35 39 40 41 42 43 44 45 46 47 48 49 50 50
+INDEX                : 20 48
+INSERT               : 10
+INT                  : 25
+INTO                 : 10
+KEY                  : 28
+LE                   : 43
+LPAREN               : 10 18 19 20 27 28
+LT                   : 40
+NE                   : 44
+ON                   : 20
+OR                   : 38
+PRIMARY              : 28
+QUIT                 : 17
+RPAREN               : 10 18 19 20 27 28
+SCONST               : 33
+SELECT               : 34 35
+SEMICOLON            : 10 17 18 19 20 34 35 45 46 47 48 49 50
+STAR                 : 34 35
+TABLE                : 18 19 47
+UNIQUE               : 24
+VALUES               : 10
+WHERE                : 35 46
+error                : 
+
+Nonterminals, with rules where they appear
+
+column               : 21 22
+column_list          : 18 19 22
+column_type          : 23 24
+condition            : 36 37 38
+conditional_delete   : 14
+conditional_select   : 12
+conditions           : 35 37 38 46
+create_index         : 9
+create_statement     : 1
+create_table         : 8
+delete_all           : 13
+delete_statement     : 4
+drop_index           : 16
+drop_statement       : 5
+drop_table           : 15
+execute_statement    : 7
+insert_statement     : 2
+primary_clause       : 19
+quit_statement       : 6
+select_all           : 11
+select_statement     : 3
+sql_statement        : 0
+value                : 29 30 39 40 41 42 43 44
+value_list           : 10 30
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . sql_statement
+    (1) sql_statement -> . create_statement
+    (2) sql_statement -> . insert_statement
+    (3) sql_statement -> . select_statement
+    (4) sql_statement -> . delete_statement
+    (5) sql_statement -> . drop_statement
+    (6) sql_statement -> . quit_statement
+    (7) sql_statement -> . execute_statement
+    (8) create_statement -> . create_table
+    (9) create_statement -> . create_index
+    (10) insert_statement -> . INSERT INTO ID VALUES LPAREN value_list RPAREN SEMICOLON
+    (11) select_statement -> . select_all
+    (12) select_statement -> . conditional_select
+    (13) delete_statement -> . delete_all
+    (14) delete_statement -> . conditional_delete
+    (15) drop_statement -> . drop_table
+    (16) drop_statement -> . drop_index
+    (17) quit_statement -> . QUIT SEMICOLON
+    (49) execute_statement -> . EXECUTE ID SEMICOLON
+    (50) execute_statement -> . EXECUTE ID DOT ID SEMICOLON
+    (18) create_table -> . CREATE TABLE ID LPAREN column_list RPAREN SEMICOLON
+    (19) create_table -> . CREATE TABLE ID LPAREN column_list COMMA primary_clause RPAREN SEMICOLON
+    (20) create_index -> . CREATE INDEX ID ON ID LPAREN ID RPAREN SEMICOLON
+    (34) select_all -> . SELECT STAR FROM ID SEMICOLON
+    (35) conditional_select -> . SELECT STAR FROM ID WHERE conditions SEMICOLON
+    (45) delete_all -> . DELETE FROM ID SEMICOLON
+    (46) conditional_delete -> . DELETE FROM ID WHERE conditions SEMICOLON
+    (47) drop_table -> . DROP TABLE ID SEMICOLON
+    (48) drop_index -> . DROP INDEX ID SEMICOLON
+
+    INSERT          shift and go to state 11
+    QUIT            shift and go to state 18
+    EXECUTE         shift and go to state 19
+    CREATE          shift and go to state 20
+    SELECT          shift and go to state 21
+    DELETE          shift and go to state 22
+    DROP            shift and go to state 23
+
+    sql_statement                  shift and go to state 1
+    create_statement               shift and go to state 2
+    insert_statement               shift and go to state 3
+    select_statement               shift and go to state 4
+    delete_statement               shift and go to state 5
+    drop_statement                 shift and go to state 6
+    quit_statement                 shift and go to state 7
+    execute_statement              shift and go to state 8
+    create_table                   shift and go to state 9
+    create_index                   shift and go to state 10
+    select_all                     shift and go to state 12
+    conditional_select             shift and go to state 13
+    delete_all                     shift and go to state 14
+    conditional_delete             shift and go to state 15
+    drop_table                     shift and go to state 16
+    drop_index                     shift and go to state 17
+
+state 1
+
+    (0) S' -> sql_statement .
+
+
+
+state 2
+
+    (1) sql_statement -> create_statement .
+
+    $end            reduce using rule 1 (sql_statement -> create_statement .)
+
+
+state 3
+
+    (2) sql_statement -> insert_statement .
+
+    $end            reduce using rule 2 (sql_statement -> insert_statement .)
+
+
+state 4
+
+    (3) sql_statement -> select_statement .
+
+    $end            reduce using rule 3 (sql_statement -> select_statement .)
+
+
+state 5
+
+    (4) sql_statement -> delete_statement .
+
+    $end            reduce using rule 4 (sql_statement -> delete_statement .)
+
+
+state 6
+
+    (5) sql_statement -> drop_statement .
+
+    $end            reduce using rule 5 (sql_statement -> drop_statement .)
+
+
+state 7
+
+    (6) sql_statement -> quit_statement .
+
+    $end            reduce using rule 6 (sql_statement -> quit_statement .)
+
+
+state 8
+
+    (7) sql_statement -> execute_statement .
+
+    $end            reduce using rule 7 (sql_statement -> execute_statement .)
+
+
+state 9
+
+    (8) create_statement -> create_table .
+
+    $end            reduce using rule 8 (create_statement -> create_table .)
+
+
+state 10
+
+    (9) create_statement -> create_index .
+
+    $end            reduce using rule 9 (create_statement -> create_index .)
+
+
+state 11
+
+    (10) insert_statement -> INSERT . INTO ID VALUES LPAREN value_list RPAREN SEMICOLON
+
+    INTO            shift and go to state 24
+
+
+state 12
+
+    (11) select_statement -> select_all .
+
+    $end            reduce using rule 11 (select_statement -> select_all .)
+
+
+state 13
+
+    (12) select_statement -> conditional_select .
+
+    $end            reduce using rule 12 (select_statement -> conditional_select .)
+
+
+state 14
+
+    (13) delete_statement -> delete_all .
+
+    $end            reduce using rule 13 (delete_statement -> delete_all .)
+
+
+state 15
+
+    (14) delete_statement -> conditional_delete .
+
+    $end            reduce using rule 14 (delete_statement -> conditional_delete .)
+
+
+state 16
+
+    (15) drop_statement -> drop_table .
+
+    $end            reduce using rule 15 (drop_statement -> drop_table .)
+
+
+state 17
+
+    (16) drop_statement -> drop_index .
+
+    $end            reduce using rule 16 (drop_statement -> drop_index .)
+
+
+state 18
+
+    (17) quit_statement -> QUIT . SEMICOLON
+
+    SEMICOLON       shift and go to state 25
+
+
+state 19
+
+    (49) execute_statement -> EXECUTE . ID SEMICOLON
+    (50) execute_statement -> EXECUTE . ID DOT ID SEMICOLON
+
+    ID              shift and go to state 26
+
+
+state 20
+
+    (18) create_table -> CREATE . TABLE ID LPAREN column_list RPAREN SEMICOLON
+    (19) create_table -> CREATE . TABLE ID LPAREN column_list COMMA primary_clause RPAREN SEMICOLON
+    (20) create_index -> CREATE . INDEX ID ON ID LPAREN ID RPAREN SEMICOLON
+
+    TABLE           shift and go to state 27
+    INDEX           shift and go to state 28
+
+
+state 21
+
+    (34) select_all -> SELECT . STAR FROM ID SEMICOLON
+    (35) conditional_select -> SELECT . STAR FROM ID WHERE conditions SEMICOLON
+
+    STAR            shift and go to state 29
+
+
+state 22
+
+    (45) delete_all -> DELETE . FROM ID SEMICOLON
+    (46) conditional_delete -> DELETE . FROM ID WHERE conditions SEMICOLON
+
+    FROM            shift and go to state 30
+
+
+state 23
+
+    (47) drop_table -> DROP . TABLE ID SEMICOLON
+    (48) drop_index -> DROP . INDEX ID SEMICOLON
+
+    TABLE           shift and go to state 31
+    INDEX           shift and go to state 32
+
+
+state 24
+
+    (10) insert_statement -> INSERT INTO . ID VALUES LPAREN value_list RPAREN SEMICOLON
+
+    ID              shift and go to state 33
+
+
+state 25
+
+    (17) quit_statement -> QUIT SEMICOLON .
+
+    $end            reduce using rule 17 (quit_statement -> QUIT SEMICOLON .)
+
+
+state 26
+
+    (49) execute_statement -> EXECUTE ID . SEMICOLON
+    (50) execute_statement -> EXECUTE ID . DOT ID SEMICOLON
+
+    SEMICOLON       shift and go to state 34
+    DOT             shift and go to state 35
+
+
+state 27
+
+    (18) create_table -> CREATE TABLE . ID LPAREN column_list RPAREN SEMICOLON
+    (19) create_table -> CREATE TABLE . ID LPAREN column_list COMMA primary_clause RPAREN SEMICOLON
+
+    ID              shift and go to state 36
+
+
+state 28
+
+    (20) create_index -> CREATE INDEX . ID ON ID LPAREN ID RPAREN SEMICOLON
+
+    ID              shift and go to state 37
+
+
+state 29
+
+    (34) select_all -> SELECT STAR . FROM ID SEMICOLON
+    (35) conditional_select -> SELECT STAR . FROM ID WHERE conditions SEMICOLON
+
+    FROM            shift and go to state 38
+
+
+state 30
+
+    (45) delete_all -> DELETE FROM . ID SEMICOLON
+    (46) conditional_delete -> DELETE FROM . ID WHERE conditions SEMICOLON
+
+    ID              shift and go to state 39
+
+
+state 31
+
+    (47) drop_table -> DROP TABLE . ID SEMICOLON
+
+    ID              shift and go to state 40
+
+
+state 32
+
+    (48) drop_index -> DROP INDEX . ID SEMICOLON
+
+    ID              shift and go to state 41
+
+
+state 33
+
+    (10) insert_statement -> INSERT INTO ID . VALUES LPAREN value_list RPAREN SEMICOLON
+
+    VALUES          shift and go to state 42
+
+
+state 34
+
+    (49) execute_statement -> EXECUTE ID SEMICOLON .
+
+    $end            reduce using rule 49 (execute_statement -> EXECUTE ID SEMICOLON .)
+
+
+state 35
+
+    (50) execute_statement -> EXECUTE ID DOT . ID SEMICOLON
+
+    ID              shift and go to state 43
+
+
+state 36
+
+    (18) create_table -> CREATE TABLE ID . LPAREN column_list RPAREN SEMICOLON
+    (19) create_table -> CREATE TABLE ID . LPAREN column_list COMMA primary_clause RPAREN SEMICOLON
+
+    LPAREN          shift and go to state 44
+
+
+state 37
+
+    (20) create_index -> CREATE INDEX ID . ON ID LPAREN ID RPAREN SEMICOLON
+
+    ON              shift and go to state 45
+
+
+state 38
+
+    (34) select_all -> SELECT STAR FROM . ID SEMICOLON
+    (35) conditional_select -> SELECT STAR FROM . ID WHERE conditions SEMICOLON
+
+    ID              shift and go to state 46
+
+
+state 39
+
+    (45) delete_all -> DELETE FROM ID . SEMICOLON
+    (46) conditional_delete -> DELETE FROM ID . WHERE conditions SEMICOLON
+
+    SEMICOLON       shift and go to state 47
+    WHERE           shift and go to state 48
+
+
+state 40
+
+    (47) drop_table -> DROP TABLE ID . SEMICOLON
+
+    SEMICOLON       shift and go to state 49
+
+
+state 41
+
+    (48) drop_index -> DROP INDEX ID . SEMICOLON
+
+    SEMICOLON       shift and go to state 50
+
+
+state 42
+
+    (10) insert_statement -> INSERT INTO ID VALUES . LPAREN value_list RPAREN SEMICOLON
+
+    LPAREN          shift and go to state 51
+
+
+state 43
+
+    (50) execute_statement -> EXECUTE ID DOT ID . SEMICOLON
+
+    SEMICOLON       shift and go to state 52
+
+
+state 44
+
+    (18) create_table -> CREATE TABLE ID LPAREN . column_list RPAREN SEMICOLON
+    (19) create_table -> CREATE TABLE ID LPAREN . column_list COMMA primary_clause RPAREN SEMICOLON
+    (21) column_list -> . column
+    (22) column_list -> . column_list COMMA column
+    (23) column -> . ID column_type
+    (24) column -> . ID column_type UNIQUE
+
+    ID              shift and go to state 53
+
+    column_list                    shift and go to state 54
+    column                         shift and go to state 55
+
+state 45
+
+    (20) create_index -> CREATE INDEX ID ON . ID LPAREN ID RPAREN SEMICOLON
+
+    ID              shift and go to state 56
+
+
+state 46
+
+    (34) select_all -> SELECT STAR FROM ID . SEMICOLON
+    (35) conditional_select -> SELECT STAR FROM ID . WHERE conditions SEMICOLON
+
+    SEMICOLON       shift and go to state 57
+    WHERE           shift and go to state 58
+
+
+state 47
+
+    (45) delete_all -> DELETE FROM ID SEMICOLON .
+
+    $end            reduce using rule 45 (delete_all -> DELETE FROM ID SEMICOLON .)
+
+
+state 48
+
+    (46) conditional_delete -> DELETE FROM ID WHERE . conditions SEMICOLON
+    (36) conditions -> . condition
+    (37) conditions -> . conditions AND condition
+    (38) conditions -> . conditions OR condition
+    (39) condition -> . ID GT value
+    (40) condition -> . ID LT value
+    (41) condition -> . ID EQ value
+    (42) condition -> . ID GE value
+    (43) condition -> . ID LE value
+    (44) condition -> . ID NE value
+
+    ID              shift and go to state 59
+
+    conditions                     shift and go to state 60
+    condition                      shift and go to state 61
+
+state 49
+
+    (47) drop_table -> DROP TABLE ID SEMICOLON .
+
+    $end            reduce using rule 47 (drop_table -> DROP TABLE ID SEMICOLON .)
+
+
+state 50
+
+    (48) drop_index -> DROP INDEX ID SEMICOLON .
+
+    $end            reduce using rule 48 (drop_index -> DROP INDEX ID SEMICOLON .)
+
+
+state 51
+
+    (10) insert_statement -> INSERT INTO ID VALUES LPAREN . value_list RPAREN SEMICOLON
+    (29) value_list -> . value
+    (30) value_list -> . value_list COMMA value
+    (31) value -> . ICONST
+    (32) value -> . FCONST
+    (33) value -> . SCONST
+
+    ICONST          shift and go to state 64
+    FCONST          shift and go to state 65
+    SCONST          shift and go to state 66
+
+    value_list                     shift and go to state 62
+    value                          shift and go to state 63
+
+state 52
+
+    (50) execute_statement -> EXECUTE ID DOT ID SEMICOLON .
+
+    $end            reduce using rule 50 (execute_statement -> EXECUTE ID DOT ID SEMICOLON .)
+
+
+state 53
+
+    (23) column -> ID . column_type
+    (24) column -> ID . column_type UNIQUE
+    (25) column_type -> . INT
+    (26) column_type -> . FLOAT
+    (27) column_type -> . CHAR LPAREN ICONST RPAREN
+
+    INT             shift and go to state 68
+    FLOAT           shift and go to state 69
+    CHAR            shift and go to state 70
+
+    column_type                    shift and go to state 67
+
+state 54
+
+    (18) create_table -> CREATE TABLE ID LPAREN column_list . RPAREN SEMICOLON
+    (19) create_table -> CREATE TABLE ID LPAREN column_list . COMMA primary_clause RPAREN SEMICOLON
+    (22) column_list -> column_list . COMMA column
+
+    RPAREN          shift and go to state 71
+    COMMA           shift and go to state 72
+
+
+state 55
+
+    (21) column_list -> column .
+
+    RPAREN          reduce using rule 21 (column_list -> column .)
+    COMMA           reduce using rule 21 (column_list -> column .)
+
+
+state 56
+
+    (20) create_index -> CREATE INDEX ID ON ID . LPAREN ID RPAREN SEMICOLON
+
+    LPAREN          shift and go to state 73
+
+
+state 57
+
+    (34) select_all -> SELECT STAR FROM ID SEMICOLON .
+
+    $end            reduce using rule 34 (select_all -> SELECT STAR FROM ID SEMICOLON .)
+
+
+state 58
+
+    (35) conditional_select -> SELECT STAR FROM ID WHERE . conditions SEMICOLON
+    (36) conditions -> . condition
+    (37) conditions -> . conditions AND condition
+    (38) conditions -> . conditions OR condition
+    (39) condition -> . ID GT value
+    (40) condition -> . ID LT value
+    (41) condition -> . ID EQ value
+    (42) condition -> . ID GE value
+    (43) condition -> . ID LE value
+    (44) condition -> . ID NE value
+
+    ID              shift and go to state 59
+
+    conditions                     shift and go to state 74
+    condition                      shift and go to state 61
+
+state 59
+
+    (39) condition -> ID . GT value
+    (40) condition -> ID . LT value
+    (41) condition -> ID . EQ value
+    (42) condition -> ID . GE value
+    (43) condition -> ID . LE value
+    (44) condition -> ID . NE value
+
+    GT              shift and go to state 75
+    LT              shift and go to state 76
+    EQ              shift and go to state 77
+    GE              shift and go to state 78
+    LE              shift and go to state 79
+    NE              shift and go to state 80
+
+
+state 60
+
+    (46) conditional_delete -> DELETE FROM ID WHERE conditions . SEMICOLON
+    (37) conditions -> conditions . AND condition
+    (38) conditions -> conditions . OR condition
+
+    SEMICOLON       shift and go to state 81
+    AND             shift and go to state 82
+    OR              shift and go to state 83
+
+
+state 61
+
+    (36) conditions -> condition .
+
+    SEMICOLON       reduce using rule 36 (conditions -> condition .)
+    AND             reduce using rule 36 (conditions -> condition .)
+    OR              reduce using rule 36 (conditions -> condition .)
+
+
+state 62
+
+    (10) insert_statement -> INSERT INTO ID VALUES LPAREN value_list . RPAREN SEMICOLON
+    (30) value_list -> value_list . COMMA value
+
+    RPAREN          shift and go to state 84
+    COMMA           shift and go to state 85
+
+
+state 63
+
+    (29) value_list -> value .
+
+    RPAREN          reduce using rule 29 (value_list -> value .)
+    COMMA           reduce using rule 29 (value_list -> value .)
+
+
+state 64
+
+    (31) value -> ICONST .
+
+    RPAREN          reduce using rule 31 (value -> ICONST .)
+    COMMA           reduce using rule 31 (value -> ICONST .)
+    SEMICOLON       reduce using rule 31 (value -> ICONST .)
+    AND             reduce using rule 31 (value -> ICONST .)
+    OR              reduce using rule 31 (value -> ICONST .)
+
+
+state 65
+
+    (32) value -> FCONST .
+
+    RPAREN          reduce using rule 32 (value -> FCONST .)
+    COMMA           reduce using rule 32 (value -> FCONST .)
+    SEMICOLON       reduce using rule 32 (value -> FCONST .)
+    AND             reduce using rule 32 (value -> FCONST .)
+    OR              reduce using rule 32 (value -> FCONST .)
+
+
+state 66
+
+    (33) value -> SCONST .
+
+    RPAREN          reduce using rule 33 (value -> SCONST .)
+    COMMA           reduce using rule 33 (value -> SCONST .)
+    SEMICOLON       reduce using rule 33 (value -> SCONST .)
+    AND             reduce using rule 33 (value -> SCONST .)
+    OR              reduce using rule 33 (value -> SCONST .)
+
+
+state 67
+
+    (23) column -> ID column_type .
+    (24) column -> ID column_type . UNIQUE
+
+    RPAREN          reduce using rule 23 (column -> ID column_type .)
+    COMMA           reduce using rule 23 (column -> ID column_type .)
+    UNIQUE          shift and go to state 86
+
+
+state 68
+
+    (25) column_type -> INT .
+
+    UNIQUE          reduce using rule 25 (column_type -> INT .)
+    RPAREN          reduce using rule 25 (column_type -> INT .)
+    COMMA           reduce using rule 25 (column_type -> INT .)
+
+
+state 69
+
+    (26) column_type -> FLOAT .
+
+    UNIQUE          reduce using rule 26 (column_type -> FLOAT .)
+    RPAREN          reduce using rule 26 (column_type -> FLOAT .)
+    COMMA           reduce using rule 26 (column_type -> FLOAT .)
+
+
+state 70
+
+    (27) column_type -> CHAR . LPAREN ICONST RPAREN
+
+    LPAREN          shift and go to state 87
+
+
+state 71
+
+    (18) create_table -> CREATE TABLE ID LPAREN column_list RPAREN . SEMICOLON
+
+    SEMICOLON       shift and go to state 88
+
+
+state 72
+
+    (19) create_table -> CREATE TABLE ID LPAREN column_list COMMA . primary_clause RPAREN SEMICOLON
+    (22) column_list -> column_list COMMA . column
+    (28) primary_clause -> . PRIMARY KEY LPAREN ID RPAREN
+    (23) column -> . ID column_type
+    (24) column -> . ID column_type UNIQUE
+
+    PRIMARY         shift and go to state 91
+    ID              shift and go to state 53
+
+    primary_clause                 shift and go to state 89
+    column                         shift and go to state 90
+
+state 73
+
+    (20) create_index -> CREATE INDEX ID ON ID LPAREN . ID RPAREN SEMICOLON
+
+    ID              shift and go to state 92
+
+
+state 74
+
+    (35) conditional_select -> SELECT STAR FROM ID WHERE conditions . SEMICOLON
+    (37) conditions -> conditions . AND condition
+    (38) conditions -> conditions . OR condition
+
+    SEMICOLON       shift and go to state 93
+    AND             shift and go to state 82
+    OR              shift and go to state 83
+
+
+state 75
+
+    (39) condition -> ID GT . value
+    (31) value -> . ICONST
+    (32) value -> . FCONST
+    (33) value -> . SCONST
+
+    ICONST          shift and go to state 64
+    FCONST          shift and go to state 65
+    SCONST          shift and go to state 66
+
+    value                          shift and go to state 94
+
+state 76
+
+    (40) condition -> ID LT . value
+    (31) value -> . ICONST
+    (32) value -> . FCONST
+    (33) value -> . SCONST
+
+    ICONST          shift and go to state 64
+    FCONST          shift and go to state 65
+    SCONST          shift and go to state 66
+
+    value                          shift and go to state 95
+
+state 77
+
+    (41) condition -> ID EQ . value
+    (31) value -> . ICONST
+    (32) value -> . FCONST
+    (33) value -> . SCONST
+
+    ICONST          shift and go to state 64
+    FCONST          shift and go to state 65
+    SCONST          shift and go to state 66
+
+    value                          shift and go to state 96
+
+state 78
+
+    (42) condition -> ID GE . value
+    (31) value -> . ICONST
+    (32) value -> . FCONST
+    (33) value -> . SCONST
+
+    ICONST          shift and go to state 64
+    FCONST          shift and go to state 65
+    SCONST          shift and go to state 66
+
+    value                          shift and go to state 97
+
+state 79
+
+    (43) condition -> ID LE . value
+    (31) value -> . ICONST
+    (32) value -> . FCONST
+    (33) value -> . SCONST
+
+    ICONST          shift and go to state 64
+    FCONST          shift and go to state 65
+    SCONST          shift and go to state 66
+
+    value                          shift and go to state 98
+
+state 80
+
+    (44) condition -> ID NE . value
+    (31) value -> . ICONST
+    (32) value -> . FCONST
+    (33) value -> . SCONST
+
+    ICONST          shift and go to state 64
+    FCONST          shift and go to state 65
+    SCONST          shift and go to state 66
+
+    value                          shift and go to state 99
+
+state 81
+
+    (46) conditional_delete -> DELETE FROM ID WHERE conditions SEMICOLON .
+
+    $end            reduce using rule 46 (conditional_delete -> DELETE FROM ID WHERE conditions SEMICOLON .)
+
+
+state 82
+
+    (37) conditions -> conditions AND . condition
+    (39) condition -> . ID GT value
+    (40) condition -> . ID LT value
+    (41) condition -> . ID EQ value
+    (42) condition -> . ID GE value
+    (43) condition -> . ID LE value
+    (44) condition -> . ID NE value
+
+    ID              shift and go to state 59
+
+    condition                      shift and go to state 100
+
+state 83
+
+    (38) conditions -> conditions OR . condition
+    (39) condition -> . ID GT value
+    (40) condition -> . ID LT value
+    (41) condition -> . ID EQ value
+    (42) condition -> . ID GE value
+    (43) condition -> . ID LE value
+    (44) condition -> . ID NE value
+
+    ID              shift and go to state 59
+
+    condition                      shift and go to state 101
+
+state 84
+
+    (10) insert_statement -> INSERT INTO ID VALUES LPAREN value_list RPAREN . SEMICOLON
+
+    SEMICOLON       shift and go to state 102
+
+
+state 85
+
+    (30) value_list -> value_list COMMA . value
+    (31) value -> . ICONST
+    (32) value -> . FCONST
+    (33) value -> . SCONST
+
+    ICONST          shift and go to state 64
+    FCONST          shift and go to state 65
+    SCONST          shift and go to state 66
+
+    value                          shift and go to state 103
+
+state 86
+
+    (24) column -> ID column_type UNIQUE .
+
+    RPAREN          reduce using rule 24 (column -> ID column_type UNIQUE .)
+    COMMA           reduce using rule 24 (column -> ID column_type UNIQUE .)
+
+
+state 87
+
+    (27) column_type -> CHAR LPAREN . ICONST RPAREN
+
+    ICONST          shift and go to state 104
+
+
+state 88
+
+    (18) create_table -> CREATE TABLE ID LPAREN column_list RPAREN SEMICOLON .
+
+    $end            reduce using rule 18 (create_table -> CREATE TABLE ID LPAREN column_list RPAREN SEMICOLON .)
+
+
+state 89
+
+    (19) create_table -> CREATE TABLE ID LPAREN column_list COMMA primary_clause . RPAREN SEMICOLON
+
+    RPAREN          shift and go to state 105
+
+
+state 90
+
+    (22) column_list -> column_list COMMA column .
+
+    RPAREN          reduce using rule 22 (column_list -> column_list COMMA column .)
+    COMMA           reduce using rule 22 (column_list -> column_list COMMA column .)
+
+
+state 91
+
+    (28) primary_clause -> PRIMARY . KEY LPAREN ID RPAREN
+
+    KEY             shift and go to state 106
+
+
+state 92
+
+    (20) create_index -> CREATE INDEX ID ON ID LPAREN ID . RPAREN SEMICOLON
+
+    RPAREN          shift and go to state 107
+
+
+state 93
+
+    (35) conditional_select -> SELECT STAR FROM ID WHERE conditions SEMICOLON .
+
+    $end            reduce using rule 35 (conditional_select -> SELECT STAR FROM ID WHERE conditions SEMICOLON .)
+
+
+state 94
+
+    (39) condition -> ID GT value .
+
+    SEMICOLON       reduce using rule 39 (condition -> ID GT value .)
+    AND             reduce using rule 39 (condition -> ID GT value .)
+    OR              reduce using rule 39 (condition -> ID GT value .)
+
+
+state 95
+
+    (40) condition -> ID LT value .
+
+    SEMICOLON       reduce using rule 40 (condition -> ID LT value .)
+    AND             reduce using rule 40 (condition -> ID LT value .)
+    OR              reduce using rule 40 (condition -> ID LT value .)
+
+
+state 96
+
+    (41) condition -> ID EQ value .
+
+    SEMICOLON       reduce using rule 41 (condition -> ID EQ value .)
+    AND             reduce using rule 41 (condition -> ID EQ value .)
+    OR              reduce using rule 41 (condition -> ID EQ value .)
+
+
+state 97
+
+    (42) condition -> ID GE value .
+
+    SEMICOLON       reduce using rule 42 (condition -> ID GE value .)
+    AND             reduce using rule 42 (condition -> ID GE value .)
+    OR              reduce using rule 42 (condition -> ID GE value .)
+
+
+state 98
+
+    (43) condition -> ID LE value .
+
+    SEMICOLON       reduce using rule 43 (condition -> ID LE value .)
+    AND             reduce using rule 43 (condition -> ID LE value .)
+    OR              reduce using rule 43 (condition -> ID LE value .)
+
+
+state 99
+
+    (44) condition -> ID NE value .
+
+    SEMICOLON       reduce using rule 44 (condition -> ID NE value .)
+    AND             reduce using rule 44 (condition -> ID NE value .)
+    OR              reduce using rule 44 (condition -> ID NE value .)
+
+
+state 100
+
+    (37) conditions -> conditions AND condition .
+
+    SEMICOLON       reduce using rule 37 (conditions -> conditions AND condition .)
+    AND             reduce using rule 37 (conditions -> conditions AND condition .)
+    OR              reduce using rule 37 (conditions -> conditions AND condition .)
+
+
+state 101
+
+    (38) conditions -> conditions OR condition .
+
+    SEMICOLON       reduce using rule 38 (conditions -> conditions OR condition .)
+    AND             reduce using rule 38 (conditions -> conditions OR condition .)
+    OR              reduce using rule 38 (conditions -> conditions OR condition .)
+
+
+state 102
+
+    (10) insert_statement -> INSERT INTO ID VALUES LPAREN value_list RPAREN SEMICOLON .
+
+    $end            reduce using rule 10 (insert_statement -> INSERT INTO ID VALUES LPAREN value_list RPAREN SEMICOLON .)
+
+
+state 103
+
+    (30) value_list -> value_list COMMA value .
+
+    RPAREN          reduce using rule 30 (value_list -> value_list COMMA value .)
+    COMMA           reduce using rule 30 (value_list -> value_list COMMA value .)
+
+
+state 104
+
+    (27) column_type -> CHAR LPAREN ICONST . RPAREN
+
+    RPAREN          shift and go to state 108
+
+
+state 105
+
+    (19) create_table -> CREATE TABLE ID LPAREN column_list COMMA primary_clause RPAREN . SEMICOLON
+
+    SEMICOLON       shift and go to state 109
+
+
+state 106
+
+    (28) primary_clause -> PRIMARY KEY . LPAREN ID RPAREN
+
+    LPAREN          shift and go to state 110
+
+
+state 107
+
+    (20) create_index -> CREATE INDEX ID ON ID LPAREN ID RPAREN . SEMICOLON
+
+    SEMICOLON       shift and go to state 111
+
+
+state 108
+
+    (27) column_type -> CHAR LPAREN ICONST RPAREN .
+
+    UNIQUE          reduce using rule 27 (column_type -> CHAR LPAREN ICONST RPAREN .)
+    RPAREN          reduce using rule 27 (column_type -> CHAR LPAREN ICONST RPAREN .)
+    COMMA           reduce using rule 27 (column_type -> CHAR LPAREN ICONST RPAREN .)
+
+
+state 109
+
+    (19) create_table -> CREATE TABLE ID LPAREN column_list COMMA primary_clause RPAREN SEMICOLON .
+
+    $end            reduce using rule 19 (create_table -> CREATE TABLE ID LPAREN column_list COMMA primary_clause RPAREN SEMICOLON .)
+
+
+state 110
+
+    (28) primary_clause -> PRIMARY KEY LPAREN . ID RPAREN
+
+    ID              shift and go to state 112
+
+
+state 111
+
+    (20) create_index -> CREATE INDEX ID ON ID LPAREN ID RPAREN SEMICOLON .
+
+    $end            reduce using rule 20 (create_index -> CREATE INDEX ID ON ID LPAREN ID RPAREN SEMICOLON .)
+
+
+state 112
+
+    (28) primary_clause -> PRIMARY KEY LPAREN ID . RPAREN
+
+    RPAREN          shift and go to state 113
+
+
+state 113
+
+    (28) primary_clause -> PRIMARY KEY LPAREN ID RPAREN .
+
+    RPAREN          reduce using rule 28 (primary_clause -> PRIMARY KEY LPAREN ID RPAREN .)
+
